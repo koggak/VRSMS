@@ -10,13 +10,13 @@ using VRSMS.Api.Models.Interfaces;
 
 namespace VRSMS.Api.Controllers
 {
-    [Authorize]
-    public class ServiceRequest : ApiController
+    
+    public class ServiceRequestController : ApiController
     {
         readonly IServiceRequestModel service = null;
 
         [Inject]
-        public ServiceRequest(IServiceRequestModel service)
+        public ServiceRequestController(IServiceRequestModel service)
         {
             this.service = service;
         }

@@ -18,6 +18,7 @@ namespace VRSMS.Api
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Ninject.Http.NinjectHttpContainer.RegisterModules(Ninject.Http.NinjectHttpModules.Modules);
         }
     }
 }

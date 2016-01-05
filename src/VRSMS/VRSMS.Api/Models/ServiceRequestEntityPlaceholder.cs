@@ -8,5 +8,6 @@ namespace VRSMS.Api.Models
 {
     public class ServiceRequestEntityPlaceholder
     {
+        public string Test { get {return "Test"; } }
     }
 }
