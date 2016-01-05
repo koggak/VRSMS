@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b641f9d08f7842bc8d6b75763a344c01" Name="Diagram1" ZoomLevel="97" >
+        <EntityTypeShape EntityType="VRSMSModel.Account" Width="1.5" PointX="5.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceRequest" Width="1.5" PointX="5.625" PointY="8.75" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceProvider" Width="1.5" PointX="0.5" PointY="6.25" />
+        <InheritanceConnector EntityType="VRSMSModel.ServiceProvider" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="VRSMSModel.ServiceProviderType" Width="2.25" PointX="0.5" PointY="3" />
+        <AssociationConnector Association="VRSMSModel.ServiceProviderTypeServiceProvider" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceRequester" Width="2" PointX="2.5" PointY="6.25" />
+        <InheritanceConnector EntityType="VRSMSModel.ServiceRequester" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceRequesterType" Width="1.5" PointX="3.125" PointY="3" />
+        <AssociationConnector Association="VRSMSModel.ServiceRequesterTypeServiceRequester" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceReceiver" Width="2.625" PointX="5.125" PointY="6.25" />
+        <InheritanceConnector EntityType="VRSMSModel.ServiceReceiver" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="VRSMSModel.ServiceReceiverType" Width="2.5" PointX="5.5" PointY="3" />
+        <AssociationConnector Association="VRSMSModel.ServiceReceiverTypeServiceReceiver" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceProviderAvailability" Width="2.375" PointX="0.5" PointY="0.875" />
+        <AssociationConnector Association="VRSMSModel.ServiceProviderAvailabilityServiceProvider" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceRequestStatus" Width="1.5" PointX="8.625" PointY="9" />
+        <AssociationConnector Association="VRSMSModel.ServiceRequestStatusServiceRequest" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceOrganizer" Width="1.75" PointX="8.375" PointY="6.5" />
+        <InheritanceConnector EntityType="VRSMSModel.ServiceOrganizer" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <AssociationConnector Association="VRSMSModel.ServiceProviderServiceRequest" />
+        <AssociationConnector Association="VRSMSModel.ServiceRequesterServiceRequest" />
+        <AssociationConnector Association="VRSMSModel.ServiceReceiverServiceRequest" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
