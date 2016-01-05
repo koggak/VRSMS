@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="VRSMSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="VRSMSModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="VRSMSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="VRSMSModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="VRSMSModel.Account" />
+          <EntitySet Name="ServiceRequests" EntityType="VRSMSModel.ServiceRequest" />
+          <EntitySet Name="ServiceProviderTypes" EntityType="VRSMSModel.ServiceProviderType" />
+          <AssociationSet Name="ServiceProviderTypeServiceProvider" Association="VRSMSModel.ServiceProviderTypeServiceProvider">
+            <End Role="ServiceProviderType" EntitySet="ServiceProviderTypes" />
+            <End Role="ServiceProvider" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="ServiceRequesterTypes" EntityType="VRSMSModel.ServiceRequesterType" />
+          <AssociationSet Name="ServiceRequesterTypeServiceRequester" Association="VRSMSModel.ServiceRequesterTypeServiceRequester">
+            <End Role="ServiceRequesterType" EntitySet="ServiceRequesterTypes" />
+            <End Role="ServiceRequester" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="ServiceReceiverTypes" EntityType="VRSMSModel.ServiceReceiverType" />
+          <AssociationSet Name="ServiceReceiverTypeServiceReceiver" Association="VRSMSModel.ServiceReceiverTypeServiceReceiver">
+            <End Role="ServiceReceiverType" EntitySet="ServiceReceiverTypes" />
+            <End Role="ServiceReceiver" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="ServiceProviderAvailabilities" EntityType="VRSMSModel.ServiceProviderAvailability" />
+          <AssociationSet Name="ServiceProviderAvailabilityServiceProvider" Association="VRSMSModel.ServiceProviderAvailabilityServiceProvider">
+            <End Role="ServiceProviderAvailability" EntitySet="ServiceProviderAvailabilities" />
+            <End Role="ServiceProvider" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="ServiceRequestStatus" EntityType="VRSMSModel.ServiceRequestStatus" />
+          <AssociationSet Name="ServiceRequestStatusServiceRequest" Association="VRSMSModel.ServiceRequestStatusServiceRequest">
+            <End Role="ServiceRequestStatus" EntitySet="ServiceRequestStatus" />
+            <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="ServiceProviderServiceRequest" Association="VRSMSModel.ServiceProviderServiceRequest">
+            <End Role="ServiceProvider" EntitySet="Accounts" />
+            <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="ServiceRequesterServiceRequest" Association="VRSMSModel.ServiceRequesterServiceRequest">
+            <End Role="ServiceRequester" EntitySet="Accounts" />
+            <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="ServiceReceiverServiceRequest" Association="VRSMSModel.ServiceReceiverServiceRequest">
+            <End Role="ServiceReceiver" EntitySet="Accounts" />
+            <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="ServiceRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ServiceRequestStatu" Relationship="VRSMSModel.ServiceRequestStatusServiceRequest" FromRole="ServiceRequest" ToRole="ServiceRequestStatus" />
+          <Property Name="ServiceRequestStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ServiceProviders" Relationship="VRSMSModel.ServiceProviderServiceRequest" FromRole="ServiceRequest" ToRole="ServiceProvider" />
+          <NavigationProperty Name="ServiceRequesters" Relationship="VRSMSModel.ServiceRequesterServiceRequest" FromRole="ServiceRequest" ToRole="ServiceRequester" />
+          <NavigationProperty Name="ServiceReceivers" Relationship="VRSMSModel.ServiceReceiverServiceRequest" FromRole="ServiceRequest" ToRole="ServiceReceiver" />
+        </EntityType>
+        <EntityType Name="ServiceProvider" BaseType="VRSMSModel.Account">
+          <NavigationProperty Name="ServiceProviderTypes" Relationship="VRSMSModel.ServiceProviderTypeServiceProvider" FromRole="ServiceProvider" ToRole="ServiceProviderType" />
+          <NavigationProperty Name="ServiceProviderAvailability" Relationship="VRSMSModel.ServiceProviderAvailabilityServiceProvider" FromRole="ServiceProvider" ToRole="ServiceProviderAvailability" />
+          <Property Name="ServiceProviderAvailabilityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ServiceRequests" Relationship="VRSMSModel.ServiceProviderServiceRequest" FromRole="ServiceProvider" ToRole="ServiceRequest" />
+        </EntityType>
+        <EntityType Name="ServiceProviderType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ServiceProviders" Relationship="VRSMSModel.ServiceProviderTypeServiceProvider" FromRole="ServiceProviderType" ToRole="ServiceProvider" />
+        </EntityType>
+        <Association Name="ServiceProviderTypeServiceProvider">
+          <End Type="VRSMSModel.ServiceProviderType" Role="ServiceProviderType" Multiplicity="*" />
+          <End Type="VRSMSModel.ServiceProvider" Role="ServiceProvider" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ServiceRequester" BaseType="VRSMSModel.Account" >
+          <NavigationProperty Name="ServiceRequesterTypes" Relationship="VRSMSModel.ServiceRequesterTypeServiceRequester" FromRole="ServiceRequester" ToRole="ServiceRequesterType" />
+          <NavigationProperty Name="ServiceRequests" Relationship="VRSMSModel.ServiceRequesterServiceRequest" FromRole="ServiceRequester" ToRole="ServiceRequest" />
+        </EntityType>
+        <EntityType Name="ServiceRequesterType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ServiceRequesters" Relationship="VRSMSModel.ServiceRequesterTypeServiceRequester" FromRole="ServiceRequesterType" ToRole="ServiceRequester" />
+        </EntityType>
+        <Association Name="ServiceRequesterTypeServiceRequester">
+          <End Type="VRSMSModel.ServiceRequesterType" Role="ServiceRequesterType" Multiplicity="*" />
+          <End Type="VRSMSModel.ServiceRequester" Role="ServiceRequester" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ServiceReceiver" BaseType="VRSMSModel.Account" >
+          <NavigationProperty Name="ServiceReceiverTypes" Relationship="VRSMSModel.ServiceReceiverTypeServiceReceiver" FromRole="ServiceReceiver" ToRole="ServiceReceiverType" />
+          <NavigationProperty Name="ServiceRequests" Relationship="VRSMSModel.ServiceReceiverServiceRequest" FromRole="ServiceReceiver" ToRole="ServiceRequest" />
+        </EntityType>
+        <EntityType Name="ServiceReceiverType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ServiceReceivers" Relationship="VRSMSModel.ServiceReceiverTypeServiceReceiver" FromRole="ServiceReceiverType" ToRole="ServiceReceiver" />
+        </EntityType>
+        <Association Name="ServiceReceiverTypeServiceReceiver">
+          <End Type="VRSMSModel.ServiceReceiverType" Role="ServiceReceiverType" Multiplicity="*" />
+          <End Type="VRSMSModel.ServiceReceiver" Role="ServiceReceiver" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ServiceProviderAvailability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ServiceProviders" Relationship="VRSMSModel.ServiceProviderAvailabilityServiceProvider" FromRole="ServiceProviderAvailability" ToRole="ServiceProvider" />
+        </EntityType>
+        <Association Name="ServiceProviderAvailabilityServiceProvider">
+          <End Type="VRSMSModel.ServiceProviderAvailability" Role="ServiceProviderAvailability" Multiplicity="1" />
+          <End Type="VRSMSModel.ServiceProvider" Role="ServiceProvider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProviderAvailability">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceProvider">
+              <PropertyRef Name="ServiceProviderAvailabilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ServiceRequestStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ServiceRequests" Relationship="VRSMSModel.ServiceRequestStatusServiceRequest" FromRole="ServiceRequestStatus" ToRole="ServiceRequest" />
+        </EntityType>
+        <Association Name="ServiceRequestStatusServiceRequest">
+          <End Type="VRSMSModel.ServiceRequestStatus" Role="ServiceRequestStatus" Multiplicity="1" />
+          <End Type="VRSMSModel.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceRequestStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceRequest">
+              <PropertyRef Name="ServiceRequestStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ServiceOrganizer" BaseType="VRSMSModel.Account" >
+          <Property Name="ServiceOrganizerTypeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ServiceProviderServiceRequest">
+          <End Type="VRSMSModel.ServiceProvider" Role="ServiceProvider" Multiplicity="*" />
+          <End Type="VRSMSModel.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
+        </Association>
+        <Association Name="ServiceRequesterServiceRequest">
+          <End Type="VRSMSModel.ServiceRequester" Role="ServiceRequester" Multiplicity="*" />
+          <End Type="VRSMSModel.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
+        </Association>
+        <Association Name="ServiceReceiverServiceRequest">
+          <End Type="VRSMSModel.ServiceReceiver" Role="ServiceReceiver" Multiplicity="*" />
+          <End Type="VRSMSModel.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="VRSMSModel" />
+        <Alias Key="Target" Value="VRSMSModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="VRSMSModelContainer" StorageEntityContainer="VRSMSModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
