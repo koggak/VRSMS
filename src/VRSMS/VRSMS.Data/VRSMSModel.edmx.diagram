@@ -14,7 +14,7 @@
         <AssociationConnector Association="VRSMSModel.ServiceProviderTypeServiceProvider" />
         <EntityTypeShape EntityType="VRSMSModel.ServiceRequester" Width="2" PointX="2.5" PointY="6.25" />
         <InheritanceConnector EntityType="VRSMSModel.ServiceRequester" />
-        <EntityTypeShape EntityType="VRSMSModel.ServiceRequesterType" Width="1.5" PointX="3.125" PointY="3" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceRequesterType" Width="2.125" PointX="3" PointY="3" />
         <AssociationConnector Association="VRSMSModel.ServiceRequesterTypeServiceRequester" />
         <EntityTypeShape EntityType="VRSMSModel.ServiceReceiver" Width="2.625" PointX="5.125" PointY="6.25" />
         <InheritanceConnector EntityType="VRSMSModel.ServiceReceiver" ManuallyRouted="false" >
@@ -23,7 +23,7 @@
         <AssociationConnector Association="VRSMSModel.ServiceReceiverTypeServiceReceiver" />
         <EntityTypeShape EntityType="VRSMSModel.ServiceProviderAvailability" Width="2.375" PointX="0.5" PointY="0.875" />
         <AssociationConnector Association="VRSMSModel.ServiceProviderAvailabilityServiceProvider" />
-        <EntityTypeShape EntityType="VRSMSModel.ServiceRequestStatus" Width="1.5" PointX="8.625" PointY="9" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceRequestStatusType" Width="1.5" PointX="8.625" PointY="9" />
         <AssociationConnector Association="VRSMSModel.ServiceRequestStatusServiceRequest" />
         <EntityTypeShape EntityType="VRSMSModel.ServiceOrganizer" Width="1.75" PointX="8.375" PointY="6.5" />
         <InheritanceConnector EntityType="VRSMSModel.ServiceOrganizer" ManuallyRouted="false" >

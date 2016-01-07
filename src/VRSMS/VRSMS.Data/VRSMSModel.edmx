@@ -12,7 +12,7 @@
     <EntitySet Name="ServiceRequesterTypes" EntityType="VRSMSModel.Store.ServiceRequesterTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ServiceReceiverTypes" EntityType="VRSMSModel.Store.ServiceReceiverTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ServiceProviderAvailabilities" EntityType="VRSMSModel.Store.ServiceProviderAvailabilities" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ServiceRequestStatus" EntityType="VRSMSModel.Store.ServiceRequestStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ServiceRequestStatusTypes" EntityType="VRSMSModel.Store.ServiceRequestStatusTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Accounts_ServiceProvider" EntityType="VRSMSModel.Store.Accounts_ServiceProvider" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Accounts_ServiceRequester" EntityType="VRSMSModel.Store.Accounts_ServiceRequester" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Accounts_ServiceReceiver" EntityType="VRSMSModel.Store.Accounts_ServiceReceiver" store:Type="Tables" Schema="dbo" />
@@ -52,7 +52,7 @@
       <End Role="ServiceProvider" EntitySet="Accounts_ServiceProvider" />
     </AssociationSet>
     <AssociationSet Name="ServiceRequestStatusServiceRequest" Association="VRSMSModel.Store.ServiceRequestStatusServiceRequest">
-      <End Role="ServiceRequestStatus" EntitySet="ServiceRequestStatus" />
+      <End Role="ServiceRequestStatus" EntitySet="ServiceRequestStatusTypes" />
       <End Role="ServiceRequest" EntitySet="ServiceRequests" />
     </AssociationSet>
     <AssociationSet Name="FK_ServiceProviderServiceRequest_ServiceProvider" Association="VRSMSModel.Store.FK_ServiceProviderServiceRequest_ServiceProvider">
@@ -107,7 +107,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ServiceRequestStatusId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="LocationAddress_StreetAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationAddress_City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationAddress_Province" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationAddress_PostalCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ServiceProviderTypes">
     <Key>
@@ -133,7 +138,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
-  <EntityType Name="ServiceRequestStatus">
+  <EntityType Name="ServiceRequestStatusTypes">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -144,18 +149,29 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="ServiceProviderAvailabilityId" Type="int" Nullable="false" />
+    <Property Name="ContactInformation_Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactInformation_Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Accounts_ServiceRequester">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="LocationAddress_StreetAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationAddress_City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationAddress_Province" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationAddress_PostalCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactInformation_Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactInformation_Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Accounts_ServiceReceiver">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="ContactInformation_Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactInformation_Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Accounts_ServiceOrganizer">
@@ -226,14 +242,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ServiceRequestStatusServiceRequest">
-    <End Role="ServiceRequestStatus" Type="VRSMSModel.Store.ServiceRequestStatus" Multiplicity="1" />
+    <End Role="ServiceRequestStatus" Type="VRSMSModel.Store.ServiceRequestStatusTypes" Multiplicity="1" />
     <End Role="ServiceRequest" Type="VRSMSModel.Store.ServiceRequests" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ServiceRequestStatus">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ServiceRequest">
-        <PropertyRef Name="ServiceRequestStatusId" />
+        <PropertyRef Name="Status" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -464,9 +480,9 @@
             <End Role="ServiceProviderAvailability" EntitySet="ServiceProviderAvailabilities" />
             <End Role="ServiceProvider" EntitySet="Accounts" />
           </AssociationSet>
-          <EntitySet Name="ServiceRequestStatus" EntityType="VRSMSModel.ServiceRequestStatus" />
+          <EntitySet Name="ServiceRequestStatusTypes" EntityType="VRSMSModel.ServiceRequestStatusType" />
           <AssociationSet Name="ServiceRequestStatusServiceRequest" Association="VRSMSModel.ServiceRequestStatusServiceRequest">
-            <End Role="ServiceRequestStatus" EntitySet="ServiceRequestStatus" />
+            <End Role="ServiceRequestStatus" EntitySet="ServiceRequestStatusTypes" />
             <End Role="ServiceRequest" EntitySet="ServiceRequests" />
           </AssociationSet>
           <AssociationSet Name="ServiceProviderServiceRequest" Association="VRSMSModel.ServiceProviderServiceRequest">
@@ -487,23 +503,26 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="ServiceRequest">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="ServiceRequestStatu" Relationship="VRSMSModel.ServiceRequestStatusServiceRequest" FromRole="ServiceRequest" ToRole="ServiceRequestStatus" />
-          <Property Name="ServiceRequestStatusId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ServiceProviders" Relationship="VRSMSModel.ServiceProviderServiceRequest" FromRole="ServiceRequest" ToRole="ServiceProvider" />
           <NavigationProperty Name="ServiceRequesters" Relationship="VRSMSModel.ServiceRequesterServiceRequest" FromRole="ServiceRequest" ToRole="ServiceRequester" />
           <NavigationProperty Name="ServiceReceivers" Relationship="VRSMSModel.ServiceReceiverServiceRequest" FromRole="ServiceRequest" ToRole="ServiceReceiver" />
+          <Property Name="LocationAddress" Type="VRSMSModel.Address" Nullable="false" />
+          <Property Name="LocationName" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="ServiceProvider" BaseType="VRSMSModel.Account">
           <NavigationProperty Name="ServiceProviderTypes" Relationship="VRSMSModel.ServiceProviderTypeServiceProvider" FromRole="ServiceProvider" ToRole="ServiceProviderType" />
           <NavigationProperty Name="ServiceProviderAvailability" Relationship="VRSMSModel.ServiceProviderAvailabilityServiceProvider" FromRole="ServiceProvider" ToRole="ServiceProviderAvailability" />
           <Property Name="ServiceProviderAvailabilityId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ServiceRequests" Relationship="VRSMSModel.ServiceProviderServiceRequest" FromRole="ServiceProvider" ToRole="ServiceRequest" />
+          <Property Name="ContactInformation" Type="VRSMSModel.ContactInformation" Nullable="false" />
         </EntityType>
         <EntityType Name="ServiceProviderType">
           <Key>
@@ -519,6 +538,9 @@
         <EntityType Name="ServiceRequester" BaseType="VRSMSModel.Account" >
           <NavigationProperty Name="ServiceRequesterTypes" Relationship="VRSMSModel.ServiceRequesterTypeServiceRequester" FromRole="ServiceRequester" ToRole="ServiceRequesterType" />
           <NavigationProperty Name="ServiceRequests" Relationship="VRSMSModel.ServiceRequesterServiceRequest" FromRole="ServiceRequester" ToRole="ServiceRequest" />
+          <Property Name="LocationAddress" Type="VRSMSModel.Address" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="ContactInformation" Type="VRSMSModel.ContactInformation" Nullable="false" />
         </EntityType>
         <EntityType Name="ServiceRequesterType">
           <Key>
@@ -534,6 +556,7 @@
         <EntityType Name="ServiceReceiver" BaseType="VRSMSModel.Account" >
           <NavigationProperty Name="ServiceReceiverTypes" Relationship="VRSMSModel.ServiceReceiverTypeServiceReceiver" FromRole="ServiceReceiver" ToRole="ServiceReceiverType" />
           <NavigationProperty Name="ServiceRequests" Relationship="VRSMSModel.ServiceReceiverServiceRequest" FromRole="ServiceReceiver" ToRole="ServiceRequest" />
+          <Property Name="ContactInformation" Type="VRSMSModel.ContactInformation" Nullable="false" />
         </EntityType>
         <EntityType Name="ServiceReceiverType">
           <Key>
@@ -565,7 +588,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ServiceRequestStatus">
+        <EntityType Name="ServiceRequestStatusType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -573,14 +596,14 @@
           <NavigationProperty Name="ServiceRequests" Relationship="VRSMSModel.ServiceRequestStatusServiceRequest" FromRole="ServiceRequestStatus" ToRole="ServiceRequest" />
         </EntityType>
         <Association Name="ServiceRequestStatusServiceRequest">
-          <End Type="VRSMSModel.ServiceRequestStatus" Role="ServiceRequestStatus" Multiplicity="1" />
+          <End Type="VRSMSModel.ServiceRequestStatusType" Role="ServiceRequestStatus" Multiplicity="1" />
           <End Type="VRSMSModel.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceRequestStatus">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ServiceRequest">
-              <PropertyRef Name="ServiceRequestStatusId" />
+              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -599,6 +622,16 @@
           <End Type="VRSMSModel.ServiceReceiver" Role="ServiceReceiver" Multiplicity="*" />
           <End Type="VRSMSModel.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
         </Association>
+        <ComplexType Name="Address" >
+          <Property Type="String" Name="StreetAddress" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="false" />
+          <Property Type="String" Name="Province" Nullable="false" />
+          <Property Type="String" Name="PostalCode" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ContactInformation" >
+          <Property Type="String" Name="Phone" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -615,16 +648,35 @@
         <MappingFragment StoreEntitySet="Accounts_ServiceProvider">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ServiceProviderAvailabilityId" ColumnName="ServiceProviderAvailabilityId" />
+          <ComplexProperty Name="ContactInformation" TypeName="VRSMSModel.ContactInformation">
+            <ScalarProperty Name="Phone" ColumnName="ContactInformation_Phone" />
+            <ScalarProperty Name="Email" ColumnName="ContactInformation_Email" />
+          </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(VRSMSModel.ServiceRequester)">
         <MappingFragment StoreEntitySet="Accounts_ServiceRequester">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ComplexProperty Name="LocationAddress" TypeName="VRSMSModel.Address">
+            <ScalarProperty Name="StreetAddress" ColumnName="LocationAddress_StreetAddress" />
+            <ScalarProperty Name="City" ColumnName="LocationAddress_City" />
+            <ScalarProperty Name="Province" ColumnName="LocationAddress_Province" />
+            <ScalarProperty Name="PostalCode" ColumnName="LocationAddress_PostalCode" />
+          </ComplexProperty>
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ComplexProperty Name="ContactInformation" TypeName="VRSMSModel.ContactInformation">
+            <ScalarProperty Name="Phone" ColumnName="ContactInformation_Phone" />
+            <ScalarProperty Name="Email" ColumnName="ContactInformation_Email" />
+          </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(VRSMSModel.ServiceReceiver)">
         <MappingFragment StoreEntitySet="Accounts_ServiceReceiver">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ComplexProperty Name="ContactInformation" TypeName="VRSMSModel.ContactInformation">
+            <ScalarProperty Name="Phone" ColumnName="ContactInformation_Phone" />
+            <ScalarProperty Name="Email" ColumnName="ContactInformation_Email" />
+          </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(VRSMSModel.ServiceOrganizer)">
@@ -638,7 +690,14 @@
       <EntityTypeMapping TypeName="IsTypeOf(VRSMSModel.ServiceRequest)">
         <MappingFragment StoreEntitySet="ServiceRequests">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ServiceRequestStatusId" ColumnName="ServiceRequestStatusId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ComplexProperty Name="LocationAddress" TypeName="VRSMSModel.Address">
+            <ScalarProperty Name="StreetAddress" ColumnName="LocationAddress_StreetAddress" />
+            <ScalarProperty Name="City" ColumnName="LocationAddress_City" />
+            <ScalarProperty Name="Province" ColumnName="LocationAddress_Province" />
+            <ScalarProperty Name="PostalCode" ColumnName="LocationAddress_PostalCode" />
+          </ComplexProperty>
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -670,9 +729,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ServiceRequestStatus">
-      <EntityTypeMapping TypeName="IsTypeOf(VRSMSModel.ServiceRequestStatus)">
-        <MappingFragment StoreEntitySet="ServiceRequestStatus">
+    <EntitySetMapping Name="ServiceRequestStatusTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(VRSMSModel.ServiceRequestStatusType)">
+        <MappingFragment StoreEntitySet="ServiceRequestStatusTypes">
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

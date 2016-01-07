@@ -20,12 +20,16 @@ namespace VRSMS.Data
             this.ServiceProviders = new HashSet<ServiceProvider>();
             this.ServiceRequesters = new HashSet<ServiceRequester>();
             this.ServiceReceivers = new HashSet<ServiceReceiver>();
+            this.LocationAddress = new Address();
         }
     
         public int Id { get; set; }
-        public int ServiceRequestStatusId { get; set; }
+        public int Status { get; set; }
+        public string LocationName { get; set; }
     
-        public virtual ServiceRequestStatus ServiceRequestStatu { get; set; }
+        public Address LocationAddress { get; set; }
+    
+        public virtual ServiceRequestStatusType ServiceRequestStatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiceProvider> ServiceProviders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

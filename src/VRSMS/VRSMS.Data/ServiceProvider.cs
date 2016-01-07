@@ -19,9 +19,12 @@ namespace VRSMS.Data
         {
             this.ServiceProviderTypes = new HashSet<ServiceProviderType>();
             this.ServiceRequests = new HashSet<ServiceRequest>();
+            this.ContactInformation = new ContactInformation();
         }
     
         public int ServiceProviderAvailabilityId { get; set; }
+    
+        public ContactInformation ContactInformation { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiceProviderType> ServiceProviderTypes { get; set; }

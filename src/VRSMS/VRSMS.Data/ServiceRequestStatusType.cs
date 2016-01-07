@@ -12,10 +12,10 @@ namespace VRSMS.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ServiceRequestStatus
+    public partial class ServiceRequestStatusType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ServiceRequestStatus()
+        public ServiceRequestStatusType()
         {
             this.ServiceRequests = new HashSet<ServiceRequest>();
         }

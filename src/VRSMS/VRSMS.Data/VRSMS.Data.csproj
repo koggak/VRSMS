@@ -54,6 +54,12 @@
     <Compile Include="Account.cs">
       <DependentUpon>VRSMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Address.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContactInformation.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceOrganizer.cs">
       <DependentUpon>VRSMSModel.tt</DependentUpon>
@@ -82,7 +88,7 @@
     <Compile Include="ServiceRequesterType.cs">
       <DependentUpon>VRSMSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ServiceRequestStatus.cs">
+    <Compile Include="ServiceRequestStatusType.cs">
       <DependentUpon>VRSMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VRSMSModel.Context.cs">

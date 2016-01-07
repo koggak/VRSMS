@@ -31,6 +31,6 @@ namespace VRSMS.Data
         public virtual DbSet<ServiceRequesterType> ServiceRequesterTypes { get; set; }
         public virtual DbSet<ServiceReceiverType> ServiceReceiverTypes { get; set; }
         public virtual DbSet<ServiceProviderAvailability> ServiceProviderAvailabilities { get; set; }
-        public virtual DbSet<ServiceRequestStatus> ServiceRequestStatus { get; set; }
+        public virtual DbSet<ServiceRequestStatusType> ServiceRequestStatusTypes { get; set; }
     }
 }

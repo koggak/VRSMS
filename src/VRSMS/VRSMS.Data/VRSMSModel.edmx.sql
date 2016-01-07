@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/06/2016 21:38:49
+-- Date Created: 01/06/2016 22:46:32
 -- Generated from EDMX file: c:\users\hammad.tawfig\documents\visual studio 2015\Projects\VRSMS\src\VRSMS\VRSMS.Data\VRSMSModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,116 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ServiceProviderTypeServiceProvider_ServiceProviderType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceProviderTypeServiceProvider] DROP CONSTRAINT [FK_ServiceProviderTypeServiceProvider_ServiceProviderType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceProviderTypeServiceProvider_ServiceProvider]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceProviderTypeServiceProvider] DROP CONSTRAINT [FK_ServiceProviderTypeServiceProvider_ServiceProvider];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceRequesterTypeServiceRequester_ServiceRequesterType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceRequesterTypeServiceRequester] DROP CONSTRAINT [FK_ServiceRequesterTypeServiceRequester_ServiceRequesterType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceRequesterTypeServiceRequester_ServiceRequester]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceRequesterTypeServiceRequester] DROP CONSTRAINT [FK_ServiceRequesterTypeServiceRequester_ServiceRequester];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceReceiverTypeServiceReceiver_ServiceReceiverType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceReceiverTypeServiceReceiver] DROP CONSTRAINT [FK_ServiceReceiverTypeServiceReceiver_ServiceReceiverType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceReceiverTypeServiceReceiver_ServiceReceiver]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceReceiverTypeServiceReceiver] DROP CONSTRAINT [FK_ServiceReceiverTypeServiceReceiver_ServiceReceiver];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceProviderAvailabilityServiceProvider]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Accounts_ServiceProvider] DROP CONSTRAINT [FK_ServiceProviderAvailabilityServiceProvider];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceRequestStatusServiceRequest]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceRequests] DROP CONSTRAINT [FK_ServiceRequestStatusServiceRequest];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceProviderServiceRequest_ServiceProvider]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceProviderServiceRequest] DROP CONSTRAINT [FK_ServiceProviderServiceRequest_ServiceProvider];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceProviderServiceRequest_ServiceRequest]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceProviderServiceRequest] DROP CONSTRAINT [FK_ServiceProviderServiceRequest_ServiceRequest];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceRequesterServiceRequest_ServiceRequester]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceRequesterServiceRequest] DROP CONSTRAINT [FK_ServiceRequesterServiceRequest_ServiceRequester];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceRequesterServiceRequest_ServiceRequest]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceRequesterServiceRequest] DROP CONSTRAINT [FK_ServiceRequesterServiceRequest_ServiceRequest];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceReceiverServiceRequest_ServiceReceiver]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceReceiverServiceRequest] DROP CONSTRAINT [FK_ServiceReceiverServiceRequest_ServiceReceiver];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceReceiverServiceRequest_ServiceRequest]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceReceiverServiceRequest] DROP CONSTRAINT [FK_ServiceReceiverServiceRequest_ServiceRequest];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceProvider_inherits_Account]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Accounts_ServiceProvider] DROP CONSTRAINT [FK_ServiceProvider_inherits_Account];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceRequester_inherits_Account]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Accounts_ServiceRequester] DROP CONSTRAINT [FK_ServiceRequester_inherits_Account];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceReceiver_inherits_Account]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Accounts_ServiceReceiver] DROP CONSTRAINT [FK_ServiceReceiver_inherits_Account];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceOrganizer_inherits_Account]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Accounts_ServiceOrganizer] DROP CONSTRAINT [FK_ServiceOrganizer_inherits_Account];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Accounts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Accounts];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceRequests]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceRequests];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceProviderTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceProviderTypes];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceRequesterTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceRequesterTypes];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceReceiverTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceReceiverTypes];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceProviderAvailabilities]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceProviderAvailabilities];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceRequestStatus]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceRequestStatus];
+GO
+IF OBJECT_ID(N'[dbo].[Accounts_ServiceProvider]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Accounts_ServiceProvider];
+GO
+IF OBJECT_ID(N'[dbo].[Accounts_ServiceRequester]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Accounts_ServiceRequester];
+GO
+IF OBJECT_ID(N'[dbo].[Accounts_ServiceReceiver]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Accounts_ServiceReceiver];
+GO
+IF OBJECT_ID(N'[dbo].[Accounts_ServiceOrganizer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Accounts_ServiceOrganizer];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceProviderTypeServiceProvider]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceProviderTypeServiceProvider];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceRequesterTypeServiceRequester]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceRequesterTypeServiceRequester];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceReceiverTypeServiceReceiver]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceReceiverTypeServiceReceiver];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceProviderServiceRequest]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceProviderServiceRequest];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceRequesterServiceRequest]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceRequesterServiceRequest];
+GO
+IF OBJECT_ID(N'[dbo].[ServiceReceiverServiceRequest]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceReceiverServiceRequest];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -36,7 +141,12 @@ GO
 -- Creating table 'ServiceRequests'
 CREATE TABLE [dbo].[ServiceRequests] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [ServiceRequestStatusId] int  NOT NULL
+    [Status] int  NOT NULL,
+    [LocationAddress_StreetAddress] nvarchar(max)  NOT NULL,
+    [LocationAddress_City] nvarchar(max)  NOT NULL,
+    [LocationAddress_Province] nvarchar(max)  NOT NULL,
+    [LocationAddress_PostalCode] nvarchar(max)  NOT NULL,
+    [LocationName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -64,8 +174,8 @@ CREATE TABLE [dbo].[ServiceProviderAvailabilities] (
 );
 GO
 
--- Creating table 'ServiceRequestStatus'
-CREATE TABLE [dbo].[ServiceRequestStatus] (
+-- Creating table 'ServiceRequestStatusTypes'
+CREATE TABLE [dbo].[ServiceRequestStatusTypes] (
     [Id] int IDENTITY(1,1) NOT NULL
 );
 GO
@@ -73,18 +183,29 @@ GO
 -- Creating table 'Accounts_ServiceProvider'
 CREATE TABLE [dbo].[Accounts_ServiceProvider] (
     [ServiceProviderAvailabilityId] int  NOT NULL,
+    [ContactInformation_Phone] nvarchar(max)  NOT NULL,
+    [ContactInformation_Email] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Accounts_ServiceRequester'
 CREATE TABLE [dbo].[Accounts_ServiceRequester] (
+    [LocationAddress_StreetAddress] nvarchar(max)  NOT NULL,
+    [LocationAddress_City] nvarchar(max)  NOT NULL,
+    [LocationAddress_Province] nvarchar(max)  NOT NULL,
+    [LocationAddress_PostalCode] nvarchar(max)  NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [ContactInformation_Phone] nvarchar(max)  NOT NULL,
+    [ContactInformation_Email] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Accounts_ServiceReceiver'
 CREATE TABLE [dbo].[Accounts_ServiceReceiver] (
+    [ContactInformation_Phone] nvarchar(max)  NOT NULL,
+    [ContactInformation_Email] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
@@ -178,9 +299,9 @@ ADD CONSTRAINT [PK_ServiceProviderAvailabilities]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'ServiceRequestStatus'
-ALTER TABLE [dbo].[ServiceRequestStatus]
-ADD CONSTRAINT [PK_ServiceRequestStatus]
+-- Creating primary key on [Id] in table 'ServiceRequestStatusTypes'
+ALTER TABLE [dbo].[ServiceRequestStatusTypes]
+ADD CONSTRAINT [PK_ServiceRequestStatusTypes]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -335,11 +456,11 @@ ON [dbo].[Accounts_ServiceProvider]
     ([ServiceProviderAvailabilityId]);
 GO
 
--- Creating foreign key on [ServiceRequestStatusId] in table 'ServiceRequests'
+-- Creating foreign key on [Status] in table 'ServiceRequests'
 ALTER TABLE [dbo].[ServiceRequests]
 ADD CONSTRAINT [FK_ServiceRequestStatusServiceRequest]
-    FOREIGN KEY ([ServiceRequestStatusId])
-    REFERENCES [dbo].[ServiceRequestStatus]
+    FOREIGN KEY ([Status])
+    REFERENCES [dbo].[ServiceRequestStatusTypes]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
@@ -347,7 +468,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_ServiceRequestStatusServiceRequest'
 CREATE INDEX [IX_FK_ServiceRequestStatusServiceRequest]
 ON [dbo].[ServiceRequests]
-    ([ServiceRequestStatusId]);
+    ([Status]);
 GO
 
 -- Creating foreign key on [ServiceProviders_Id] in table 'ServiceProviderServiceRequest'

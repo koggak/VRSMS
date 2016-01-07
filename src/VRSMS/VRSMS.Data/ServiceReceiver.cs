@@ -19,8 +19,11 @@ namespace VRSMS.Data
         {
             this.ServiceReceiverTypes = new HashSet<ServiceReceiverType>();
             this.ServiceRequests = new HashSet<ServiceRequest>();
+            this.ContactInformation = new ContactInformation();
         }
     
+    
+        public ContactInformation ContactInformation { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiceReceiverType> ServiceReceiverTypes { get; set; }
