@@ -51,7 +51,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceOrganizer.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceProvider.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceProviderAvailability.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceProviderType.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceReceiver.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceReceiverType.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRequest.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRequester.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRequesterType.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRequestStatus.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VRSMSModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VRSMSModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VRSMSModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VRSMSModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -68,6 +111,22 @@
     <None Include="VRSMSModel.edmx.diagram">
       <DependentUpon>VRSMSModel.edmx</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="VRSMSModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VRSMSModel.Context.cs</LastGenOutput>
+      <DependentUpon>VRSMSModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="VRSMSModel.edmx.sql" />
+    <Content Include="VRSMSModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VRSMSModel.cs</LastGenOutput>
+      <DependentUpon>VRSMSModel.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

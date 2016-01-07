@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\hammad.tawfig\documents\visual studio 2015\Projects\VRSMS\VRSMS.Data\VRSMSModel.edmx'. 
+﻿// T4 code generation is enabled for model 'c:\users\hammad.tawfig\documents\visual studio 2015\Projects\VRSMS\src\VRSMS\VRSMS.Data\VRSMSModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
