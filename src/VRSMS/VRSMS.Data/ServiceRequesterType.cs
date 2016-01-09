@@ -12,17 +12,7 @@ namespace VRSMS.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ServiceRequesterType
+    public partial class ServiceRequesterType : BaseType
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ServiceRequesterType()
-        {
-            this.ServiceRequesters = new HashSet<ServiceRequester>();
-        }
-    
-        public int Id { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceRequester> ServiceRequesters { get; set; }
     }
 }

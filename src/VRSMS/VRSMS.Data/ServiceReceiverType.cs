@@ -12,17 +12,7 @@ namespace VRSMS.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ServiceReceiverType
+    public partial class ServiceReceiverType : BaseType
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ServiceReceiverType()
-        {
-            this.ServiceReceivers = new HashSet<ServiceReceiver>();
-        }
-    
-        public int Id { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceReceiver> ServiceReceivers { get; set; }
     }
 }

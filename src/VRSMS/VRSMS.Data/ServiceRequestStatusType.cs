@@ -12,17 +12,7 @@ namespace VRSMS.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ServiceRequestStatusType
+    public partial class ServiceRequestStatusType : BaseType
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ServiceRequestStatusType()
-        {
-            this.ServiceRequests = new HashSet<ServiceRequest>();
-        }
-    
-        public int Id { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
     }
 }

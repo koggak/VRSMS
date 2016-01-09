@@ -14,6 +14,7 @@ namespace VRSMS.Data
     
     public partial class ServiceOrganizer : Account
     {
-        public int ServiceOrganizerTypeId { get; set; }
+    
+        public virtual ServiceOrganizerType Type { get; set; }
     }
 }

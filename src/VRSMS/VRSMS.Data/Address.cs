@@ -10,12 +10,16 @@
 namespace VRSMS.Data
 {
     using System;
+    using System.Collections.Generic;
     
     public partial class Address
     {
-        public string StreetAddress { get; set; }
+        public int Id { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
         public string City { get; set; }
-        public string Province { get; set; }
         public string PostalCode { get; set; }
+    
+        public virtual ProvinceType Province { get; set; }
     }
 }

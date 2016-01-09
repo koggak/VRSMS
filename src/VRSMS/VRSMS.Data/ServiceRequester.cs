@@ -17,20 +17,13 @@ namespace VRSMS.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ServiceRequester()
         {
-            this.ServiceRequesterTypes = new HashSet<ServiceRequesterType>();
-            this.ServiceRequests = new HashSet<ServiceRequest>();
-            this.LocationAddress = new Address();
             this.ContactInformation = new ContactInformation();
         }
     
         public string Name { get; set; }
     
-        public Address LocationAddress { get; set; }
         public ContactInformation ContactInformation { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceRequesterType> ServiceRequesterTypes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
+        public virtual ServiceRequesterType Type { get; set; }
     }
 }

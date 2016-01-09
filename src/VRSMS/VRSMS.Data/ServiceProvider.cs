@@ -17,8 +17,6 @@ namespace VRSMS.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ServiceProvider()
         {
-            this.ServiceProviderTypes = new HashSet<ServiceProviderType>();
-            this.ServiceRequests = new HashSet<ServiceRequest>();
             this.ContactInformation = new ContactInformation();
         }
     
@@ -26,10 +24,7 @@ namespace VRSMS.Data
     
         public ContactInformation ContactInformation { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceProviderType> ServiceProviderTypes { get; set; }
         public virtual ServiceProviderAvailability ServiceProviderAvailability { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
+        public virtual ServiceProviderType Type { get; set; }
     }
 }

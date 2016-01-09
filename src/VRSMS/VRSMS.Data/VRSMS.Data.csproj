@@ -57,11 +57,20 @@
     <Compile Include="Address.cs">
       <DependentUpon>VRSMSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseType.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ContactInformation.cs">
       <DependentUpon>VRSMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceType.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ServiceOrganizer.cs">
+      <DependentUpon>VRSMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceOrganizerType.cs">
       <DependentUpon>VRSMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ServiceProvider.cs">

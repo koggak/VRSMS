@@ -27,10 +27,8 @@ namespace VRSMS.Data
     
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
-        public virtual DbSet<ServiceProviderType> ServiceProviderTypes { get; set; }
-        public virtual DbSet<ServiceRequesterType> ServiceRequesterTypes { get; set; }
-        public virtual DbSet<ServiceReceiverType> ServiceReceiverTypes { get; set; }
         public virtual DbSet<ServiceProviderAvailability> ServiceProviderAvailabilities { get; set; }
-        public virtual DbSet<ServiceRequestStatusType> ServiceRequestStatusTypes { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<BaseType> BaseTypes { get; set; }
     }
 }

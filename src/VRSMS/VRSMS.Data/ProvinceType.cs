@@ -12,11 +12,7 @@ namespace VRSMS.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ServiceRequest
+    public partial class ProvinceType : BaseType
     {
-        public int Id { get; set; }
-        public string LocationName { get; set; }
-    
-        public virtual ServiceRequestStatusType Status { get; set; }
     }
 }

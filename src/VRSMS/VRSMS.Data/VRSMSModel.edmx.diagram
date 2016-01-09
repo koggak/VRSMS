@@ -10,27 +10,36 @@
         <EntityTypeShape EntityType="VRSMSModel.ServiceProvider" Width="1.5" PointX="0.5" PointY="6.25" />
         <InheritanceConnector EntityType="VRSMSModel.ServiceProvider" ManuallyRouted="false" >
         </InheritanceConnector>
-        <EntityTypeShape EntityType="VRSMSModel.ServiceProviderType" Width="2.25" PointX="0.5" PointY="3" />
-        <AssociationConnector Association="VRSMSModel.ServiceProviderTypeServiceProvider" />
         <EntityTypeShape EntityType="VRSMSModel.ServiceRequester" Width="2" PointX="2.5" PointY="6.25" />
         <InheritanceConnector EntityType="VRSMSModel.ServiceRequester" />
-        <EntityTypeShape EntityType="VRSMSModel.ServiceRequesterType" Width="2.125" PointX="3" PointY="3" />
-        <AssociationConnector Association="VRSMSModel.ServiceRequesterTypeServiceRequester" />
         <EntityTypeShape EntityType="VRSMSModel.ServiceReceiver" Width="2.625" PointX="5.125" PointY="6.25" />
         <InheritanceConnector EntityType="VRSMSModel.ServiceReceiver" ManuallyRouted="false" >
         </InheritanceConnector>
-        <EntityTypeShape EntityType="VRSMSModel.ServiceReceiverType" Width="2.5" PointX="5.5" PointY="3" />
-        <AssociationConnector Association="VRSMSModel.ServiceReceiverTypeServiceReceiver" />
         <EntityTypeShape EntityType="VRSMSModel.ServiceProviderAvailability" Width="2.375" PointX="0.5" PointY="0.875" />
         <AssociationConnector Association="VRSMSModel.ServiceProviderAvailabilityServiceProvider" />
-        <EntityTypeShape EntityType="VRSMSModel.ServiceRequestStatusType" Width="1.5" PointX="8.625" PointY="9" />
-        <AssociationConnector Association="VRSMSModel.ServiceRequestStatusServiceRequest" />
         <EntityTypeShape EntityType="VRSMSModel.ServiceOrganizer" Width="1.75" PointX="8.375" PointY="6.5" />
         <InheritanceConnector EntityType="VRSMSModel.ServiceOrganizer" ManuallyRouted="false" >
         </InheritanceConnector>
-        <AssociationConnector Association="VRSMSModel.ServiceProviderServiceRequest" />
-        <AssociationConnector Association="VRSMSModel.ServiceRequesterServiceRequest" />
-        <AssociationConnector Association="VRSMSModel.ServiceReceiverServiceRequest" />
+        <EntityTypeShape EntityType="VRSMSModel.Address" Width="1.5" PointX="11.75" PointY="1.75" />
+        <EntityTypeShape EntityType="VRSMSModel.BaseType" Width="1.5" PointX="15" PointY="4.625" />
+        <EntityTypeShape EntityType="VRSMSModel.ProvinceType" Width="1.5" PointX="15" PointY="2.75" />
+        <InheritanceConnector EntityType="VRSMSModel.ProvinceType" />
+        <AssociationConnector Association="VRSMSModel.AddressProvinceType" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceReceiverType" Width="1.5" PointX="15.5" PointY="7.75" />
+        <InheritanceConnector EntityType="VRSMSModel.ServiceReceiverType" />
+        <AssociationConnector Association="VRSMSModel.ServiceReceiverServiceReceiverType" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceOrganizerType" Width="1.875" PointX="11.75" PointY="8.125" />
+        <InheritanceConnector EntityType="VRSMSModel.ServiceOrganizerType" />
+        <AssociationConnector Association="VRSMSModel.ServiceOrganizerServiceOrganizerType" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceRequestStatusType" Width="2.25" PointX="9.625" PointY="9.75" />
+        <InheritanceConnector EntityType="VRSMSModel.ServiceRequestStatusType" />
+        <AssociationConnector Association="VRSMSModel.ServiceRequestServiceRequestStatusType" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceRequesterType" Width="2" PointX="4.25" PointY="3.75" />
+        <InheritanceConnector EntityType="VRSMSModel.ServiceRequesterType" />
+        <AssociationConnector Association="VRSMSModel.ServiceRequesterServiceRequesterType" />
+        <EntityTypeShape EntityType="VRSMSModel.ServiceProviderType" Width="1.5" PointX="2.125" PointY="3.875" />
+        <InheritanceConnector EntityType="VRSMSModel.ServiceProviderType" />
+        <AssociationConnector Association="VRSMSModel.ServiceProviderServiceProviderType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
